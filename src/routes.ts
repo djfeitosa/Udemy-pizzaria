@@ -3,6 +3,9 @@ import multer from "multer";
 import uploadConfig from "./config/multer";
 import { CreateCategoryController } from "./controllers/category/CreateCategoryController";
 import { ListCategoryController } from "./controllers/category/ListCategoryController";
+import { AddItemController } from "./controllers/order/AddItemController";
+import { CreateOrderController } from "./controllers/order/CreateOrderController";
+import { RemoveOrderController } from "./controllers/order/RemoveOrderController";
 import { CreateProductController } from "./controllers/product/CreateProductController";
 import { ListByCategoryController } from "./controllers/product/ListByCategoryController";
 import { AuthUserController } from "./controllers/user/AuthUserController";
@@ -37,5 +40,12 @@ router.post(
 
 router.get("/category/product", IsAuthenticated, new ListByCategoryController().handle);
 
+//-- ROTAS ORDER --
+
+router.post("/order", IsAuthenticated, new CreateOrderController().handle);
+router.delete("/order", IsAuthenticated, new RemoveOrderController().handle);
+router.post("/order/add", IsAuthenticated, new AddItemController().handle);
+
 //------------------------------------------//
+
 export { router };
